@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ATTP — Kiểm Tra Kiến Thức</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none
+        }
+
+        :root {
+            --navy: #0f2044;
+            --navy2: #1a3461;
+            --teal: #0d8a7a;
+            --teal2: #0bb5a1;
+            --teal-light: #e0f7f5;
+            --amber: #d97706;
+            --amber-light: #fef3c7;
+            --rose: #c0392b;
+            --rose-light: #fce4e1;
+            --rose-text: #7b1111;
+            --emerald: #15803d;
+            --emerald-light: #dcfce7;
+            --emerald-text: #14532d;
+            --slate: #475569;
+            --slate2: #64748b;
+            --slate-light: #f1f5f9;
+            --border: #e2e8f0;
+            --white: #fff;
+            --text: #1e293b;
+            --text2: #64748b;
+            --shadow: 0 2px 12px rgba(15, 32, 68, .10);
+            --r: 14px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: #f0f4f8;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, sans-serif;
+            color: var(--text);
+            font-size: 15px;
+            line-height: 1.5;
+            overflow-x: hidden
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            -webkit-appearance: none
+        }
+
+        button:active {
+            transform: scale(.97)
+        }
+
+        /* ───── SCREENS ───── */
+        .page {
+            display: none;
+            min-height: 100vh;
+            flex-direction: column
+        }
+
+        .page.on {
+            display: flex
+        }
+
+        /* ═══════ HOME ═══════ */
+        #pgHome {
+            background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 55%, #1d4a6e 100%);
+            align-items: center;
+            justify-content: center;
+            padding: 24px 20px;
+            text-align: center
+        }
+
+        .home-emblem {
+            width: 72px;
+            height: 72px;
+            background: rgba(13, 138, 122, .25);
+            border: 2px solid var(--teal2);
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin: 0 auto 18px;
+            box-shadow: 0 0 40px rgba(11, 181, 161, .2)
+        }
+
+        .home-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--teal2);
+            margin-bottom: 6px
+        }
+
+        .home-title {
+            font-size: 26px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 4px
+        }
+
+        .home-sub {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55);
+            margin-bottom: 28px
+        }
+
+        .home-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 360px;
+            margin-bottom: 24px
+        }
+
+        .hcard {
+            background: rgba(255, 255, 255, .07);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center
+        }
+
+        .hcard-val {
+            font-size: 22px;
+            font-weight: 900;
+            color: #fff
+        }
+
+        .hcard-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, .5);
+            margin-top: 2px
+        }
+
+        .home-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            max-width: 360px
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal2) 100%);
+            color: #fff;
+            border-radius: var(--r);
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(13, 138, 122, .4);
+            transition: box-shadow .2s
+        }
+
+        .btn-primary:active {
+            box-shadow: 0 2px 8px rgba(13, 138, 122, .3)
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, .1);
+            color: rgba(255, 255, 255, .9);
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: var(--r);
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px
+        }
+
+        .home-note {
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, .35);
+            margin-top: 12px;
+            line-height: 1.6
+        }
+
+        /* ═══════ STUDY (Ôn Tập) ═══════ */
+        #pgStudy {
+            background: #f0f4f8
+        }
+
+        .study-hdr {
+            background: var(--navy);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: sticky;
+            top: 0;
+            z-index: 50
+        }
+
+        .study-hdr-title {
+            flex: 1;
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+            border-radius: 9px;
+            padding: 7px 12px;
+            font-size: 13px;
+            font-weight: 600
+        }
+
+        .study-search-wrap {
+            padding: 12px 14px;
+            background: #fff;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .study-search {
+            width: 100%;
+            background: var(--slate-light);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: var(--text);
+            outline: none;
+            font-family: inherit
+        }
+
+        .study-search:focus {
+            border-color: var(--teal2)
+        }
+
+        .study-body {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px
+        }
+
+        .study-card {
+            background: #fff;
+            border-radius: var(--r);
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1.5px solid var(--border)
+        }
+
+        .study-card-hdr {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 14px 14px 12px;
+            cursor: pointer
+        }
+
+        .study-qnum {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--teal-light);
+            color: var(--teal);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            margin-top: 1px
+        }
+
+        .study-qtxt {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.55
+        }
+
+        .study-chevron {
+            flex-shrink: 0;
+            color: var(--slate2);
+            font-size: 16px;
+            margin-top: 2px;
+            transition: transform .25s
+        }
+
+        .study-card.open .study-chevron {
+            transform: rotate(180deg)
+        }
+
+        .study-answer {
+            display: none;
+            border-top: 1px solid var(--border);
+            padding: 12px 14px
+        }
+
+        .study-card.open .study-answer {
+            display: block
+        }
+
+        .study-opt {
+            display: flex;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 9px;
+            margin-bottom: 6px;
+            font-size: 13.5px;
+            line-height: 1.45
+        }
+
+        .study-opt:last-child {
+            margin-bottom: 0
+        }
+
+        .study-opt.correct {
+            background: var(--emerald-light);
+            color: var(--emerald-text)
+        }
+
+        .study-opt.normal {
+            background: var(--slate-light);
+            color: var(--slate)
+        }
+
+        .study-opt-lbl {
+            flex-shrink: 0;
+            font-weight: 800;
+            min-width: 18px
+        }
+
+        .study-hint {
+            font-size: 11.5px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed var(--teal-light)
+        }
+
+        /* ═══════ QUIZ SCREEN ═══════ */
+        #pgQuiz {
+            background: #f0f4f8
+        }
+
+        .quiz-hdr {
+            background: var(--navy);
+            padding: 10px 14px 8px;
+            position: sticky;
+            top: 0;
+            z-index: 50
+        }
+
+        .quiz-hdr-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px
+        }
+
+        .timer-pill {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, .1);
+            border-radius: 10px;
+            padding: 6px 12px;
+            border: 1px solid rgba(255, 255, 255, .15)
+        }
+
+        .timer-icon {
+            font-size: 14px
+        }
+
+        .timer-val {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            font-variant-numeric: tabular-nums
+        }
+
+        .timer-pill.danger {
+            background: rgba(192, 57, 43, .25);
+            border-color: rgba(192, 57, 43, .5)
+        }
+
+        .timer-pill.danger .timer-val {
+            color: #fca5a5;
+            animation: blink .9s infinite
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .4
+            }
+        }
+
+        .qcounter {
+            font-size: 13px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, .7)
+        }
+
+        .btn-gridview {
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+            border-radius: 9px;
+            padding: 6px 11px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px
+        }
+
+        .prog-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 2px;
+            overflow: hidden
+        }
+
+        .prog-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teal2), #38bdf8);
+            border-radius: 2px;
+            transition: width .3s ease
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-size: 11.5px;
+            color: rgba(255, 255, 255, .5);
+            font-weight: 600
+        }
+
+        /* QUESTION BODY */
+        .quiz-body {
+            flex: 1;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 14px
+        }
+
+        .q-card {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border)
+        }
+
+        .q-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--teal-light);
+            color: var(--teal);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: .5px
+        }
+
+        .q-txt {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 16px;
+            line-height: 1.65
+        }
+
+        .opts {
+            display: flex;
+            flex-direction: column;
+            gap: 9px
+        }
+
+        .opt {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: var(--slate-light);
+            border: 2px solid var(--border);
+            border-radius: 11px;
+            padding: 12px 13px;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            transition: all .15s;
+            -webkit-appearance: none
+        }
+
+        .opt:active {
+            transform: scale(.985)
+        }
+
+        .opt-lbl {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--slate2);
+            transition: all .15s
+        }
+
+        .opt-txt {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.5;
+            padding-top: 3px
+        }
+
+        /* states */
+        .opt.sel {
+            background: #eff6ff;
+            border-color: #3b82f6
+        }
+
+        .opt.sel .opt-lbl {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: #fff
+        }
+
+        .opt.right {
+            background: var(--emerald-light);
+            border-color: var(--emerald)
+        }
+
+        .opt.right .opt-lbl {
+            background: var(--emerald);
+            border-color: var(--emerald);
+            color: #fff
+        }
+
+        .opt.wrong {
+            background: var(--rose-light);
+            border-color: var(--rose)
+        }
+
+        .opt.wrong .opt-lbl {
+            background: var(--rose);
+            border-color: var(--rose);
+            color: #fff
+        }
+
+        .opt.show-right {
+            background: var(--emerald-light);
+            border-color: var(--emerald);
+            opacity: .75
+        }
+
+        .opt.show-right .opt-lbl {
+            background: var(--emerald);
+            border-color: var(--emerald);
+            color: #fff
+        }
+
+        .opt:disabled {
+            cursor: default
+        }
+
+        /* QUIZ FOOTER NAV */
+        .quiz-foot {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            padding: 10px 14px;
+            display: flex;
+            gap: 8px;
+            safe-area-inset-bottom: env(safe-area-inset-bottom)
+        }
+
+        .btn-nav {
+            flex: 1;
+            border-radius: 11px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            background: var(--slate-light);
+            color: var(--text)
+        }
+
+        .btn-nav:disabled {
+            opacity: .35;
+            cursor: default
+        }
+
+        .btn-nxt {
+            background: var(--navy);
+            color: #fff
+        }
+
+        .btn-sub {
+            flex: 1.5;
+            background: linear-gradient(135deg, var(--teal), var(--teal2));
+            color: #fff;
+            border-radius: 11px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 800
+        }
+
+        /* ═══════ GRID DRAWER ═══════ */
+        #drGrid {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 32, 68, .6);
+            z-index: 200;
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            backdrop-filter: blur(3px)
+        }
+
+        #drGrid.on {
+            display: flex
+        }
+
+        .grid-sheet {
+            background: #fff;
+            border-radius: 22px 22px 0 0;
+            padding: 16px;
+            width: 100%;
+            max-height: 70vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .grid-sheet-hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px
+        }
+
+        .grid-sheet-title {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text)
+        }
+
+        .btn-close {
+            background: var(--slate-light);
+            color: var(--slate);
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 700
+        }
+
+        .grid-legend {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 12px;
+            flex-wrap: wrap
+        }
+
+        .leg {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: var(--slate2)
+        }
+
+        .leg-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0
+        }
+
+        .gcells {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 7px
+        }
+
+        .gcell {
+            aspect-ratio: 1;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: .12s
+        }
+
+        .gcell:active {
+            transform: scale(.88)
+        }
+
+        .gc-empty {
+            background: var(--slate-light);
+            color: var(--slate2)
+        }
+
+        .gc-done {
+            background: #dbeafe;
+            color: #1d4ed8;
+            border-color: #93c5fd
+        }
+
+        .gc-cur {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy)
+        }
+
+        /* ═══════ RESULT ═══════ */
+        #pgResult {
+            background: #f0f4f8;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .res-hero {
+            background: linear-gradient(150deg, var(--navy) 0%, var(--navy2) 60%, #1d4a6e 100%);
+            padding: 28px 20px 24px;
+            text-align: center
+        }
+
+        .score-ring {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .08);
+            border: 3px solid rgba(255, 255, 255, .25);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            position: relative
+        }
+
+        .score-ring::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--teal2);
+            animation: spin 2s linear infinite
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .score-big {
+            font-size: 38px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1
+        }
+
+        .score-denom {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55);
+            font-weight: 600
+        }
+
+        .res-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 4px
+        }
+
+        .res-subtitle {
+            font-size: 13px;
+            color: rgba(255, 255, 255, .55)
+        }
+
+        .res-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 14px;
+            background: #fff;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .sbox {
+            background: var(--slate-light);
+            border-radius: 12px;
+            padding: 12px 6px;
+            text-align: center
+        }
+
+        .sbox-num {
+            font-size: 24px;
+            font-weight: 900
+        }
+
+        .sbox-num.c {
+            color: var(--emerald)
+        }
+
+        .sbox-num.w {
+            color: var(--rose)
+        }
+
+        .sbox-num.s {
+            color: var(--amber)
+        }
+
+        .sbox-lbl {
+            font-size: 11px;
+            color: var(--slate2);
+            margin-top: 2px
+        }
+
+        /* filter tabs */
+        .res-filter {
+            display: flex;
+            gap: 6px;
+            padding: 12px 14px;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch
+        }
+
+        .res-filter::-webkit-scrollbar {
+            display: none
+        }
+
+        .ftab {
+            flex-shrink: 0;
+            padding: 7px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            background: var(--slate-light);
+            color: var(--slate2);
+            border: 1.5px solid transparent
+        }
+
+        .ftab.active {
+            background: var(--navy);
+            color: #fff;
+            border-color: var(--navy)
+        }
+
+        .ftab.c.active {
+            background: var(--emerald);
+            border-color: var(--emerald)
+        }
+
+        .ftab.w.active {
+            background: var(--rose);
+            border-color: var(--rose)
+        }
+
+        .ftab.s.active {
+            background: var(--amber);
+            border-color: var(--amber)
+        }
+
+        .res-actions {
+            display: flex;
+            gap: 8px;
+            padding: 12px 14px;
+            background: #fff;
+            border-bottom: 1px solid var(--border)
+        }
+
+        .btn-retry {
+            flex: 1;
+            background: var(--navy);
+            color: #fff;
+            border-radius: 11px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 800
+        }
+
+        .btn-home {
+            flex: 1;
+            background: var(--slate-light);
+            color: var(--text);
+            border-radius: 11px;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 700
+        }
+
+        .review-list {
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-bottom: 30px
+        }
+
+        .rcard {
+            background: #fff;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--border)
+        }
+
+        .rcard.c-card {
+            border-left-color: var(--emerald)
+        }
+
+        .rcard.w-card {
+            border-left-color: var(--rose)
+        }
+
+        .rcard.s-card {
+            border-left-color: var(--amber)
+        }
+
+        .rcard-hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 14px 8px
+        }
+
+        .rcard-qn {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--slate2)
+        }
+
+        .rbadge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 9px;
+            border-radius: 6px
+        }
+
+        .rbadge.c {
+            background: var(--emerald-light);
+            color: var(--emerald-text)
+        }
+
+        .rbadge.w {
+            background: var(--rose-light);
+            color: var(--rose-text)
+        }
+
+        .rbadge.s {
+            background: var(--amber-light);
+            color: #92400e
+        }
+
+        .rcard-q {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0 14px 10px;
+            line-height: 1.55;
+            color: var(--text)
+        }
+
+        .rcard-opts {
+            padding: 0 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px
+        }
+
+        .ropt {
+            display: flex;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 9px;
+            font-size: 13px;
+            line-height: 1.45
+        }
+
+        .ropt.co {
+            background: var(--emerald-light);
+            color: var(--emerald-text);
+            font-weight: 600
+        }
+
+        .ropt.wo {
+            background: var(--rose-light);
+            color: var(--rose-text)
+        }
+
+        .ropt.no {
+            background: var(--slate-light);
+            color: var(--slate)
+        }
+
+        .ropt-lbl {
+            flex-shrink: 0;
+            font-weight: 900
+        }
+
+        /* ═══════ MODAL ═══════ */
+        .modal-bg {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 32, 68, .6);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            backdrop-filter: blur(4px)
+        }
+
+        .modal-bg.on {
+            display: flex
+        }
+
+        .modal {
+            background: #fff;
+            border-radius: 20px;
+            padding: 26px 22px;
+            width: 100%;
+            max-width: 320px;
+            text-align: center
+        }
+
+        .modal-icon {
+            font-size: 44px;
+            margin-bottom: 10px
+        }
+
+        .modal-title {
+            font-size: 19px;
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 6px
+        }
+
+        .modal-body {
+            font-size: 14px;
+            color: var(--slate2);
+            margin-bottom: 22px;
+            line-height: 1.6
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 10px
+        }
+
+        .mbtn-cancel {
+            flex: 1;
+            background: var(--slate-light);
+            color: var(--text);
+            border-radius: 11px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700
+        }
+
+        .mbtn-ok {
+            flex: 1;
+            background: linear-gradient(135deg, var(--teal), var(--teal2));
+            color: #fff;
+            border-radius: 11px;
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 800
+        }
+
+        /* ═══════ TOAST ═══════ */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: var(--navy);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 500;
+            opacity: 0;
+            pointer-events: none;
+            transition: all .28s;
+            white-space: nowrap;
+            box-shadow: 0 4px 16px rgba(15, 32, 68, .35)
+        }
+
+        .toast.on {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0)
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ HOME PAGE ═══ -->
+    <div class="page on" id="pgHome">
+        <div class="home-emblem">🍽️</div>
+        <div class="home-label">An Toàn Thực Phẩm</div>
+        <div class="home-title">Kiểm Tra Kiến Thức<br>ATTP & Môi Trường</div>
+        <div class="home-sub">Ngân hàng 70 câu hỏi chuẩn xác</div>
+        <div class="home-cards">
+            <div class="hcard">
+                <div class="hcard-val">70</div>
+                <div class="hcard-label">Câu hỏi</div>
+            </div>
+            <div class="hcard">
+                <div class="hcard-val">40</div>
+                <div class="hcard-label">Câu / Lần thi</div>
+            </div>
+            <div class="hcard">
+                <div class="hcard-val">30'</div>
+                <div class="hcard-label">Thời gian</div>
+            </div>
+            <div class="hcard">
+                <div class="hcard-val">100</div>
+                <div class="hcard-label">Thang điểm</div>
+            </div>
+        </div>
+        <div class="home-btns">
+            <button class="btn-primary" onclick="startQuiz()">🎲 Thi Ngẫu Nhiên (40 Câu)</button>
+            <button class="btn-secondary" onclick="goStudy()">📖 Ôn Tập Toàn Bộ 70 Câu</button>
+        </div>
+        <div class="home-note">Mỗi lần thi: chọn ngẫu nhiên 40 câu + đảo đáp án<br>Ôn tập: xem tất cả câu hỏi & đáp án
+            đúng</div>
+    </div>
+
+    <!-- ═══ STUDY PAGE ═══ -->
+    <div class="page" id="pgStudy">
+        <div class="study-hdr">
+            <button class="btn-back" onclick="show('pgHome')">← Về</button>
+            <div class="study-hdr-title">📖 Ôn Tập — 70 Câu</div>
+        </div>
+        <div class="study-search-wrap">
+            <input class="study-search" type="text" placeholder="🔍 Tìm câu hỏi..." oninput="filterStudy(this.value)"
+                id="studySearch">
+        </div>
+        <div class="study-body" id="studyBody"></div>
+    </div>
+
+    <!-- ═══ QUIZ PAGE ═══ -->
+    <div class="page" id="pgQuiz">
+        <div class="quiz-hdr">
+            <div class="quiz-hdr-row">
+                <div class="timer-pill" id="timerPill">
+                    <span class="timer-icon">⏱</span>
+                    <span class="timer-val" id="timerVal">30:00</span>
+                </div>
+                <div class="qcounter" id="qcounter">Câu 1 / 40</div>
+                <button class="btn-gridview" onclick="openGrid()">☰ Danh sách</button>
+            </div>
+            <div class="prog-bar">
+                <div class="prog-fill" id="progFill" style="width:0%"></div>
+            </div>
+            <div class="quiz-meta">
+                <span id="metaDone">✅ Đã làm: 0</span>
+                <span id="metaLeft">⭕ Chưa làm: 40</span>
+            </div>
+        </div>
+        <div class="quiz-body" id="quizBody">
+            <div class="q-card">
+                <div class="q-tag" id="qTag">Câu 1</div>
+                <div class="q-txt" id="qTxt"></div>
+                <div class="opts" id="opts"></div>
+            </div>
+        </div>
+        <div class="quiz-foot">
+            <button class="btn-nav" id="btnPrev" onclick="goQ(-1)" disabled>◀ Trước</button>
+            <button class="btn-nav btn-nxt" id="btnNext" onclick="goQ(1)">Tiếp ▶</button>
+            <button class="btn-sub" id="btnSub" onclick="askSubmit()" style="display:none">✅ Nộp Bài</button>
+        </div>
+    </div>
+
+    <!-- ═══ GRID DRAWER ═══ -->
+    <div id="drGrid" onclick="closeGridBg(event)">
+        <div class="grid-sheet">
+            <div class="grid-sheet-hdr">
+                <div class="grid-sheet-title">📋 Danh Sách Câu Hỏi</div>
+                <button class="btn-close" onclick="closeGrid()">Đóng ✕</button>
+            </div>
+            <div class="grid-legend">
+                <div class="leg">
+                    <div class="leg-dot" style="background:var(--slate-light);border:1px solid var(--border)"></div>Chưa
+                    làm
+                </div>
+                <div class="leg">
+                    <div class="leg-dot" style="background:#dbeafe;border:1px solid #93c5fd"></div>Đã làm
+                </div>
+                <div class="leg">
+                    <div class="leg-dot" style="background:var(--navy)"></div>Đang xem
+                </div>
+            </div>
+            <div class="gcells" id="gcells"></div>
+        </div>
+    </div>
+
+    <!-- ═══ RESULT PAGE ═══ -->
+    <div class="page" id="pgResult">
+        <div class="res-hero">
+            <div class="score-ring">
+                <div class="score-big" id="scoreBig">0</div>
+                <div class="score-denom">/ 100</div>
+            </div>
+            <div class="res-title" id="resTitle">Kết quả bài thi</div>
+            <div class="res-subtitle" id="resSub"></div>
+        </div>
+        <div class="res-stats">
+            <div class="sbox">
+                <div class="sbox-num c" id="stC">0</div>
+                <div class="sbox-lbl">✅ Đúng</div>
+            </div>
+            <div class="sbox">
+                <div class="sbox-num w" id="stW">0</div>
+                <div class="sbox-lbl">❌ Sai</div>
+            </div>
+            <div class="sbox">
+                <div class="sbox-num s" id="stS">0</div>
+                <div class="sbox-lbl">⚠️ Bỏ qua</div>
+            </div>
+        </div>
+        <div class="res-filter">
+            <button class="ftab active" onclick="filterResult('all',this)">Tất cả</button>
+            <button class="ftab c" onclick="filterResult('c',this)">✅ Câu đúng</button>
+            <button class="ftab w" onclick="filterResult('w',this)">❌ Câu sai</button>
+            <button class="ftab s" onclick="filterResult('s',this)">⚠️ Bỏ qua</button>
+        </div>
+        <div class="res-actions">
+            <button class="btn-retry" onclick="startQuiz()">🎲 Thi Lại</button>
+            <button class="btn-home" onclick="show('pgHome')">🏠 Trang Chủ</button>
+        </div>
+        <div class="review-list" id="reviewList"></div>
+    </div>
+
+    <!-- ═══ CONFIRM MODAL ═══ -->
+    <div class="modal-bg" id="modalConfirm">
+        <div class="modal">
+            <div class="modal-icon">📤</div>
+            <div class="modal-title">Nộp bài?</div>
+            <div class="modal-body" id="modalTxt"></div>
+            <div class="modal-btns">
+                <button class="mbtn-cancel" onclick="closeModal()">Tiếp tục làm</button>
+                <button class="mbtn-ok" onclick="submitQuiz()">Nộp bài</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ══════════════════════════════════════════
+        //  DATA — trực tiếp từ file Excel
+        // ══════════════════════════════════════════
+        const BANK = [{ "id": 1, "question": "Trước khi cất hàng vào bảo quản trong tủ/ kho đông, nhãn thực phẩm phải…", "options": { "A": "Có thông tin về người nhập kho. Có thông tin về người xuất kho. Nhãn được dán giữa 2 lớp màng nhựa", "B": "Có thông tin về người nhập kho. Có thông tin về ngày hết hạn bảo quản. Nhãn được dán giữa 2 lớp màng nhựa", "C": "Có thông tin về ngày nhập kho. Có thông tin về ngày hết hạn bảo quản. Nhãn được dán giữa 2 lớp màng nhựa", "D": "Có thông tin về ngày nhập kho. Có thông tin về ngày xuất kho. Nhãn được dán giữa 2 lớp màng nhựa" }, "correct": "C" }, { "id": 2, "question": "Sau khi sơ chế, khối thực phẩm cấp đông (không giới hạn về diện tích) không được dày quá bao nhiêu centimet?", "options": { "A": "10cm", "B": "15cm", "C": "20cm", "D": "25cm" }, "correct": "B" }, { "id": 3, "question": "Quy định nhiệt độ đối với tủ/ kho đông là bao nhiêu độ?", "options": { "A": "Dưới -18°C", "B": "Từ -18°C đến - 5°C", "C": "Từ -5°C đến 0°C", "D": "Trên 0°C" }, "correct": "A" }, { "id": 4, "question": "Tần suất kiểm tra thực phẩm, sắp xếp và vệ sinh kho/ tủ đông như thế nào?", "options": { "A": "1 lần/tuần", "B": "2 lần/tuần", "C": "3 lần/tuần", "D": "Hàng ngày" }, "correct": "B" }, { "id": 5, "question": "Phương pháp rã đông nào đảm bảo chất lượng và an toàn thực phẩm nhất?", "options": { "A": "Rã đông trong tủ lạnh", "B": "Rã đông bằng lò vi sóng", "C": "Rã đông bằng nước", "D": "Rã đông ở nhiệt độ phòng" }, "correct": "A" }, { "id": 6, "question": "Để ngăn ngừa vi sinh vật phát triển, nhiệt độ tủ lạnh rã đông được kiểm soát tại khoảng nhiệt độ bao nhiêu?", "options": { "A": "Dưới 5°C", "B": "Từ 5°C đến 10°C", "C": "Từ 10°C đến 15°C", "D": "Trên 15°C" }, "correct": "A" }, { "id": 7, "question": "Thông thường, các sản phẩm sẽ được rã đông hết bằng tủ lạnh trong khoảng thời gian bao lâu?", "options": { "A": "4 tiếng đồng hồ", "B": "8 tiếng đồng hồ", "C": "12 tiếng đồng hồ", "D": "24 tiếng đồng hồ" }, "correct": "C" }, { "id": 8, "question": "Khoảng nhiệt độ nước rã đông là ….", "options": { "A": "Dưới 0°C", "B": "Từ 0°C đến 21°C", "C": "Từ 21°C đến 65°C", "D": "Trên 65°C" }, "correct": "B" }, { "id": 9, "question": "Để đảm bảo chất lượng thực phẩm, thời gian rã đông bằng nhiệt độ phòng không quá bao nhiêu giờ?", "options": { "A": "Không quá 4 giờ", "B": "Không quá 8 giờ", "C": "Không quá 10 giờ", "D": "Không quá 12 giờ" }, "correct": "A" }, { "id": 10, "question": "Nhiệt độ của thực phẩm sau rã đông phải đảm bảo bao nhiêu độ?", "options": { "A": "Dưới 5°C", "B": "Dưới 10°C", "C": "Dưới 15°C", "D": "Dưới 20°C" }, "correct": "A" }, { "id": 11, "question": "Nếu dùng túi nylon để bao gói thực phẩm tươi sống thì sử dụng túi màu gì?", "options": { "A": "Trắng", "B": "Đen", "C": "Màu sắc khác nhau để phân biệt theo từng loại thực phẩm, tương tự như màu thớt", "D": "Tùy thích" }, "correct": "A" }, { "id": 12, "question": "Nhãn thực phẩm bao gói sẵn cần có các nội dung gì?", "options": { "A": "Tên sản phẩm & Tên và địa chỉ của tổ chức, cá nhân chịu trách nhiệm về sản phẩm", "B": "Định lượng, thời hạn sử dụng và hướng dẫn bảo quản", "C": "Nguồn gốc rõ ràng hoặc công bố chất lượng của Cơ quan Nhà nước có thẩm quyền", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 13, "question": "Hãy nêu tiêu chuẩn chung để lựa chọn cá đạt tiêu chuẩn?", "options": { "A": "Thân co cứng, để trên bàn tay không bị thõng xuống, bụng cá không vỡ. Thịt cá rắn chắc, có đàn hồi, dính chặt vào xương sống. Không mềm nhũn, ấn ngón tay vào giữ nguyên không đầy lên lại, thịt trợt khỏi xương dễ dàng", "B": "Nhãn cầu mắt cá lồi, trong suốt, giác mạc đàn hồi không nhăn nheo hoặc rách. Miệng cá ngậm cứng, cơ miệng đàn hồi.\nMang cá dán chặt xuống hoa khế, không có mùi hôi, còn màu tươi của máu cá. Không có màu nâu xám, không có nhớt bẩn, không mùi hôi ươn", "C": "Vẩy: tươi óng ánh, dính chặt. không có niêm dịch hoặc có ít, màu trong, không có mùi hôi.\nHậu môn: Thụt sâu, trắng nhạt. Không lồi, đỏ bẩn", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 14, "question": "Hãy nêu tiêu chuẩn chung để lựa chọn tôm đạt tiêu chuẩn?", "options": { "A": "Vỏ, đầu, râu, mắt tôm sáng lóng lánh, màu xanh trơn láng, cứng dai, không long đầu. Không đầu rời xa khỏi thân, râu dễ rụng; mắt tôm có vết xám đục; màu sẫm, không bóng bẩy, vỏ dễ tách ra, đỏ đầu", "B": "Thịt tôm trắng, trong. Không mềm nhũn, đục, có mùi hôi. Mùi vị: Mùi tanh đặc trưng, không hôi, không tanh khằn", "C": "Sau khi luộc: Màu đỏ, mùi thơm ngon, sờ thịt chắc. Không có màu bạc, mùi ươn thiu, sờ thịt bở", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 15, "question": "Hãy nêu tiêu chuẩn chung để lựa chọn sò/ hến đạt tiêu chuẩn?", "options": { "A": "Vỏ: Khép chặt, khi gõ vào kêu chắc. Nếu đang mở, chạm ngón tay vào sẽ khép lại nhanh chóng. Không mở hoặc khép hờ, khi gõ vào kêu bộp", "B": "Nước trong ruột: Nước nhiều và trong", "C": "Mùi: Hơi tanh, bình thường. Không thối khẳm", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 16, "question": "Hãy nêu tiêu chuẩn chung để lựa chọn trái cây đạt tiêu chuẩn?", "options": { "A": "Còn nguyên vẹn, lành lặn, không dập nát trầy xước hoặc thâm nhũn. Sờ, nắm: Cảm giác nặng tay, chắc", "B": "Có màu sắc tự nhiên của từng loại, không úa, héo. Không chọn các loại quả xanh chưa ăn được hoặc có màu sắc bất thường. Không có mùi lạ", "C": "Không chọn trái cây có núm, cuống thâm nhũn, khi bổ ra hoặc khi bóc vỏ thấy biến màu giữa lớp vỏ và thịt quả. Không chọn rau quả có các vết lấm tấm hoặc vết trắng trên lá, cuống lá, núm lá, cuống quả…", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 17, "question": "Tiêu chuẩn để lựa chọn thực phẩm chế biến sẵn (có hạn sử dụng trên 6 tháng) như thế nào?", "options": { "A": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 2/3 HSD", "B": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 1/2 HSD", "C": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 1/3 HSD", "D": "Tất cả đều đúng" }, "correct": "A" }, { "id": 18, "question": "Tiêu chuẩn để lựa chọn thực phẩm chế biến sẵn (có hạn sử dụng dưới 6 tháng) như thế nào?", "options": { "A": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 2/3 HSD", "B": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 1/2 HSD", "C": "Hạn sử dụng (HSD) đảm bảo: còn ít nhất 1/3 HSD", "D": "Tất cả đều đúng" }, "correct": "B" }, { "id": 19, "question": "Tiêu chuẩn chung để lựa chọn thịt heo đạt tiêu chuẩn như thế nào?", "options": { "A": "Màng ngoài khô, màu sắc đỏ tươi, bóng. Mỡ có lớp màu sắc, độ rắn, mùi vị bình thường. Mặt khớp, láng và trong. Vết cắt: Màu sắc bình thường, sáng, khô", "B": "Rắn chắc, đàn hồi cao, lấy ngón tay ấn vào thịt không để lại vết lõm khi bỏ ngón tay ra và không bị dính", "C": "Tủy bám chặt vào thành ống tủy, màu trong, đàn hồi", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 20, "question": "Thế nào là thịt gia cầm không đạt tiêu chuẩn?", "options": { "A": "Thịt màu vàng thẫm, mắt nhắm, hậu môn đen xám, vết cắt tiết bằng phẳng, mặt nhẵn, máu không ứa", "B": "Thịt không đàn hồi, màu tím sẫm, tối", "C": "Vết cắt ngang có nước màu vàng nhạt hoặc đỏ nhờ. Mỡ màu hồng, nhờ nhợ hoặc xanh", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 21, "question": "Nhiệt độ tiêu chuẩn cho kho lưu trữ thực phẩm khô (ngoại trừ kho rượu) là bao nhiêu?", "options": { "A": "Từ 14°C đến 18°C", "B": "Từ 18°C đến 22°C", "C": "Từ 22°C đến 25°C", "D": "Trên 25°C" }, "correct": "C" }, { "id": 22, "question": "Khoảng cách tối thiểu so với nền để bảo quản nguyên liệu, sản phẩm là bao nhiêu?", "options": { "A": "10cm", "B": "20 cm", "C": "30cm", "D": "40cm" }, "correct": "B" }, { "id": 23, "question": "Khoảng cách tối thiểu so với tường để bảo quản nguyên liệu, sản phẩm là bao nhiêu?", "options": { "A": "10cm", "B": "20 cm", "C": "30cm", "D": "40cm" }, "correct": "B" }, { "id": 24, "question": "Khoảng cách tối thiểu so với trần để bảo quản nguyên liệu, sản phẩm là bao nhiêu?", "options": { "A": "10cm", "B": "20 cm", "C": "30cm", "D": "50cm" }, "correct": "D" }, { "id": 25, "question": "Nhiệt độ tiêu chuẩn để bảo quản rau củ trong kho/ tủ lạnh là bao nhiêu?", "options": { "A": "Từ 1°C đến 8°C", "B": "Từ 2°C đến 8°C", "C": "Từ 3°C đến 8°C", "D": "Từ 2°C đến 7°C" }, "correct": "B" }, { "id": 26, "question": "Nhiệt độ phòng/ kho bảo quản trái cây phù hợp nhất là bao nhiêu?", "options": { "A": "Từ 2°C đến 8°C", "B": "Từ 8°C đến 16°C", "C": "Từ 16°C đến 22°C", "D": "Từ 22°C đến 28°C" }, "correct": "C" }, { "id": 27, "question": "Để phòng ngừa sự nhiễm chéo trong quá trình bảo quản lạnh, cần phân ra mấy khu vực chính?", "options": { "A": "1 khu vực", "B": "2 khu vực", "C": "3 khu vực", "D": "4 khu vực" }, "correct": "D" }, { "id": 28, "question": "Nhiệt độ thích hợp nhất để bảo quản lạnh toàn bộ thực phẩm dễ bị hư hỏng như sữa tươi, các loại nước ép đóng hộp, whipping, trái cây đã cắt là bao nhiêu?", "options": { "A": "Dưới 0°C", "B": "Từ 2°C đến 5°C", "C": "Từ 2°C đến 8°C", "D": "Từ 5°C đến 8°C" }, "correct": "B" }, { "id": 29, "question": "Các loại đồ nguội sau mỗi buổi phục vụ buffet sẽ phải bỏ đi nếu trưng bày quá bao nhiêu tiếng?", "options": { "A": "2 tiếng", "B": "3 tiếng", "C": "4 tiếng", "D": "5 tiếng" }, "correct": "C" }, { "id": 30, "question": "Đối với việc trưng bày và phục vụ buffet, việc nào sau đây không đúng với quy tắc về an toàn thực phẩm?", "options": { "A": "Để nguyên các chén dĩa đã trưng bày trên buffet chưa sử dụng để phục vụ ở buổi tiếp theo", "B": "Dùng tay không bốc thực phẩm để kiểm tra chất lượng", "C": "Thời gian trưng bày và phục vụ thực phẩm dài hơn 4 giờ mà không có kiểm soát nhiệt độ", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 31, "question": "Khi phát hiện thực phẩm (đang phục vụ khách, chế biến, bảo quản…) bị mất an toàn hoặc nghi ngờ bị mất an toàn, Bếp trưởng hoặc Phó Giám Đốc phụ trách cần xem xét và có quyết định như thế nào?", "options": { "A": "Ngưng sử dụng thực phẩm ngay, cho đến khi làm rõ sự việc", "B": "Khéo léo xin phép thu lại thực phẩm từ khách nếu khách chuẩn bị hoặc đang sử dụng", "C": "Thông báo cho các bên liên quan khác như: Kho, Kế toán mua hàng, Bếp và Nhà hàng của Khu vực khác", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 32, "question": "Trưởng Bộ phận (TBP) hoặc người chịu trách nhiệm cao nhất của ca làm việc phải chỉ đạo thu hồi, cô lập sản phẩm tại khu vực riêng biệt để tránh lây nhiễm chéo và sử dụng nhầm như thế nào?", "options": { "A": "Các sản phẩm được thu hồi phải được bảo quản ở cùng điều kiện nhiệt độ như đã bảo quản trước đó", "B": "Làm bảng thông tin dán lên lô sản phẩm đã được thu hồi, gồm các nội dung: tên sản phẩm, ngày thu hồi, số lượng, người thu hồi và câu \"Sản phẩm thu hồi chờ xử ý. Không được sử dụng''", "C": "Chụp hình sản phẩm và lập Biên bản thu hồi sản phẩm không phù hợp", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 33, "question": "Trước ngày 15 hàng tháng, BP nào có trách nhiệm tổng hợp thông tin về số lượng, giá trị, nguyên nhân hàng hủy và BGĐ đã phê duyệt hủy của tháng trước cho Kế toán Trưởng, Giám đốc khách sạn kiểm soát?", "options": { "A": "Kế toán", "B": "Nhà hàng", "C": "Bếp", "D": "Tất cả đều đúng" }, "correct": "A" }, { "id": 34, "question": "Nhiệt độ tâm tối thiểu khi chế biến thực phẩm bò, bê, cừu tươi, không đóng đá là bao nhiêu?", "options": { "A": "61°C", "B": "63°C", "C": "71°C", "D": "73°C" }, "correct": "B" }, { "id": 35, "question": "Nhiệt độ tâm tối thiểu khi chế biến thực phẩm gia cầm tươi, không đóng đá là bao nhiêu?", "options": { "A": "61°C", "B": "63°C", "C": "71°C", "D": "74°C" }, "correct": "D" }, { "id": 36, "question": "Nhiệt độ hâm nóng thức ăn tối thiểu là bao nhiêu?", "options": { "A": "63°C", "B": "75°C", "C": "100°C", "D": "Tất cả đều đúng" }, "correct": "B" }, { "id": 37, "question": "Thực phẩm làm lạnh bằng phương pháp gián đoạn được quy định như thế nào?", "options": { "A": "Giảm từ 60°C đến 21°C trong vòng 2 giờ\nGiảm từ 21°C đến 5°C trong vòng 4 giờ", "B": "Sau khi nấu, để nguội đến 80°C\nGiảm từ 80°C đến 40°C trong vòng 2 giờ\nGiảm từ 40°C đến 0°C trong vòng 4 giờ", "C": "Để thực phẩm ở ngoài không khí cho đến khi nguội rồi cho vào tủ lạnh/ tủ đông", "D": "Tất cả đều đúng" }, "correct": "A" }, { "id": 38, "question": "Dải nhiệt độ nào là vùng nhiệt độ nguy hiểm đối với thực phẩm?", "options": { "A": "Dưới 5°C", "B": "Từ 5°C đến 60°C", "C": "Trên 60°C", "D": "Tất cả đều sai" }, "correct": "B" }, { "id": 39, "question": "Nhiệt độ tối thiểu để giữ nóng thực phẩm là bao nhiêu?", "options": { "A": "63°C", "B": "75°C", "C": "82°C", "D": "Tất cả đều sai" }, "correct": "D" }, { "id": 40, "question": "Việc lưu mẫu thực phẩm phải được thực hiện khi phục vụ từ bao nhiêu người trở lên (khi cùng sử dụng một thực đơn)?", "options": { "A": "20 người", "B": "30 người", "C": "40 người", "D": "50 người" }, "correct": "B" }, { "id": 41, "question": "Khử trùng/ khử khuẩn các hộp lưu mẫu thực phẩm bằng cách hấp nóng hoặc trụng qua nước sôi 100°C  trong vòng bao nhiêu phút để đảm bảo không có vi khuẩn tồn tại trong các hộp?", "options": { "A": "Từ 01 đến 03 phút", "B": "Từ 03 đến 05 phút", "C": "Từ 05 đến 07 phút", "D": "Càng lâu càng tốt" }, "correct": "B" }, { "id": 42, "question": "Khi lưu mẫu, lượng mẫu thực phẩm rắn phải lưu trữ là bao nhiêu?", "options": { "A": "100 gram", "B": "150 gram", "C": "200 gram", "D": "100 kg" }, "correct": "A" }, { "id": 43, "question": "Khi lưu mẫu, lượng mẫu thực phẩm lỏng phải lưu trữ là bao nhiêu?", "options": { "A": "100 gram", "B": "150 gram", "C": "200 gram", "D": "100 kg" }, "correct": "B" }, { "id": 44, "question": "Trên các hộp lưu mẫu thực phẩm phải ghi thông tin gì?", "options": { "A": "Tên món ăn, thời gian lưu, người lưu", "B": "Tên món ăn, thời gian hủy, người hủy", "C": "Tên món ăn, thời gian lưu, người hủy", "D": "Tên món ăn, thời gian hủy, người lưu" }, "correct": "A" }, { "id": 45, "question": "Sổ lưu mẫu thực phẩm phải cập nhật đầy đủ những thông tin gì?", "options": { "A": "Món ăn. Người ăn. Ngày, giờ lưu mẫu; người lưu. Ngày, giờ hủy mẫu; người hủy", "B": "Món ăn. Người nấu. Ngày, giờ lưu mẫu; người lưu. Ngày, giờ hủy mẫu; người hủy", "C": "Món ăn. Ngày, giờ lưu mẫu; người lưu. Ngày, giờ hủy mẫu; người hủy", "D": "Món ăn. Ngày, giờ nấu; người lưu. Ngày, giờ hủy mẫu; người hủy" }, "correct": "C" }, { "id": 46, "question": "Thời gian lưu mẫu thực phẩm phải đảm bảo sau bao lâu mới được hủy mẫu?", "options": { "A": "12 giờ", "B": "24 giờ", "C": "18 giờ", "D": "Khi nào chật tủ lưu mẫu thì hủy" }, "correct": "B" }, { "id": 47, "question": "Nếu vết thương ở trên bàn tay, nhân viên phải làm gì để chế biến thực phẩm?", "options": { "A": "Chỉ cần băng kín vết thương bằng băng không thấm nước", "B": "Băng kín vết thương bằng băng không thấm nước & sử dụng bao tay dùng một lần", "C": "Băng kín vết thương bằng băng không thấm nước & sử dụng bao tay dùng một lần với tần suất thay hợp lý", "D": "Không tiếp xúc vào thực phẩm đến khi nào liền vết thương" }, "correct": "C" }, { "id": 48, "question": "Người trực tiếp sản xuất thực phẩm đang mắc các bệnh truy nhiễm qua đường tiêu hóa như tiêu chảy thì phải xử lý như thế nào?", "options": { "A": "Vẫn làm việc bình thường", "B": "Nghỉ việc và chữa bệnh khi nào khỏi thì tiếp tục làm việc", "C": "Uống thuốc theo đơn của bác sỹ và làm việc bình thường", "D": "Uống thuốc theo đơn của bác sỹ và làm các việc khác như sơ chế…" }, "correct": "B" }, { "id": 49, "question": "Tiêu chuẩn với móng tay của nhân viên chế biến thực phẩm được quy định như thế nào?", "options": { "A": "Ngắn và sạch sẽ. Có thể sơn bóng hoặc sơn không màu. Không dùng móng tay giả", "B": "Sạch sẽ. Không sơn móng tay. Không dùng móng tay giả", "C": "Ngắn và sạch sẽ. Không sơn móng tay. Không dùng móng tay giả", "D": "Ngắn. Không sơn móng tay. Không dùng móng tay giả" }, "correct": "C" }, { "id": 50, "question": "Nên rửa tay khi nào?", "options": { "A": "Sau khi ra về. Sau khi tiếp xúc với các thực phẩm sống. Bất kỳ thời điểm nào tay có nguy cơ nhiễm bẩn", "B": "Trước khi chấm công. Sau khi tiếp xúc với các thực phẩm sống. Bất kỳ thời điểm nào tay có nguy cơ nhiễm bẩn", "C": "Trước khi tiến hành công việc. Sau khi tiếp xúc với các thực phẩm chín. Bất kỳ thời điểm nào tay có nguy cơ nhiễm bẩn", "D": "Trước khi tiến hành công việc. Sau khi tiếp xúc với các thực phẩm sống. Bất kỳ thời điểm nào tay có nguy cơ nhiễm bẩn" }, "correct": "D" }, { "id": 51, "question": "Tiêu chuẩn rửa tay có bao nhiêu bước?", "options": { "A": "3 bước", "B": "4 bước", "C": "5 bước", "D": "6 bước" }, "correct": "C" }, { "id": 52, "question": "Phải mang khẩu trang và găng tay khi nào?", "options": { "A": "Khi nhận thực phẩm. Khi sơ chế thực phẩm. Khi chế biến thành phẩm", "B": "Khi sơ chế thực phẩm. Khi dọn dẹp vệ sinh. Khi ra món", "C": "Khi nhận thực phẩm. Khi dọn dẹp vệ sinh. Khi chế biến thành phẩm", "D": "Khi sơ chế thực phẩm. Khi dọn dẹp vệ sinh. Khi chế biến thành phẩm" }, "correct": "D" }, { "id": 53, "question": "Những vật nào có thể gây nhiễm bẩn đối với thực phẩm?", "options": { "A": "Nhẫn. Đồng hồ. Găng tay", "B": "Nhẫn. Đồng hồ. Hoa tai", "C": "Nhẫn. Đồng hồ. Vòng tay", "D": "Nhẫn. Đồng hồ. Vòng cổ" }, "correct": "C" }, { "id": 54, "question": "Trong quá trình chế biến thực phẩm, người trực tiếp chế biến không được làm gì?", "options": { "A": "Khạc nhổ. Nói chuyện. Hút thuốc", "B": "Khạc nhổ. Ăn uống. Nói chuyện", "C": "Khạc nhổ. Ăn uống. Hút thuốc", "D": "Nói chuyện. Ăn uống. Hút thuốc" }, "correct": "A" }, { "id": 55, "question": "Thực phẩm bị ô nhiễm từ nguồn nào?", "options": { "A": "Từ bàn tay người sản xuất bị ô nhiễm", "B": "Từ côn trùng, động vật có tác nhân gây bệnh", "C": "Từ nguyên liệu bị ô nhiễm & Từ trang thiết bị không đảm bảo vệ sinh", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 56, "question": "Để phòng ngừa ô nhiễm thực phẩm, không nên làm gì?", "options": { "A": "Cầm nắm thực phẩm sống rồi lại cầm nắm thực phẩm chín mà không thực hiện các biện pháp vệ sinh cần thiết", "B": "Dùng lẫn lộn các dụng cụ giành riêng cho các loại thực phẩm", "C": "Để thực phẩm ở nhiệt độ từ 5°C đến 60°C", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 57, "question": "Để nhận thực phẩm an toàn, việc kiểm tra nào sau đây là cần thiết?", "options": { "A": "Nhiệt độ của thực phẩm trong quá trình chế biến. Giấy chứng nhận nguồn gốc sản phẩm, các chứng từ kiểm dịch. Kiểm tra chất lượng của thực phẩm trước khi nhận", "B": "Nhiệt độ bảo quản của thực phẩm trong quá trình bảo quản. Giấy chứng nhận đủ điều kiện sức khỏe, các chứng từ kiểm dịch. Kiểm tra chất lượng của thực phẩm trước khi nhận", "C": "Nhiệt độ bảo quản của thực phẩm trong quá trình bảo quản. Giấy chứng nhận nguồn gốc sản phẩm, các chứng từ kiểm dịch. Kiểm tra chất lượng của thực phẩm sau khi chế biến", "D": "Nhiệt độ bảo quản của thực phẩm trong quá trình bảo quản. Giấy chứng nhận nguồn gốc sản phẩm, các chứng từ kiểm dịch. Kiểm tra chất lượng của thực phẩm trước khi nhận" }, "correct": "D" }, { "id": 58, "question": "Nguy cơ thực phẩm bị ô nhiễm là do yếu tố nào?", "options": { "A": "Mối nguy thiên nhiên. Mối nguy hóa học. Mối nguy vật lý", "B": "Mối nguy tự nhiên. Mối nguy hóa học. Mối nguy vật lý", "C": "Mối nguy sinh học. Mối nguy hóa học. Mối nguy vật lý", "D": "Mối nguy vi khuẩn. Mối nguy hóa học. Mối nguy vật lý" }, "correct": "C" }, { "id": 59, "question": "Theo quy định trong QCVN 01:2009/BYT, nguồn nước phải được kiểm tra các chỉ tiêu về hóa lý và vi sinh với tần suất như thế nào?", "options": { "A": "3 tháng/ lần", "B": "6 tháng/ lần", "C": "9 tháng/ lần", "D": "12 tháng/ lần" }, "correct": "B" }, { "id": 60, "question": "Tần suất vệ sinh máy làm đá được quy định như thế nào?", "options": { "A": "1 tuần/ lần", "B": "2 tuần/ lần", "C": "Hàng ngày", "D": "Khi nào bẩn" }, "correct": "A" }, { "id": 61, "question": "Nhiệt độ nước trong giai đoạn máy rửa chén được quy định là bao nhiêu?", "options": { "A": "Do nhà cung cấp cài sẵn", "B": "Từ 60°C đến 65°C", "C": "Từ 80°C đến 85°C", "D": "Trên 100°C" }, "correct": "B" }, { "id": 62, "question": "Nhiệt độ nước trong giai đoạn máy tráng chén được quy định là bao nhiêu?", "options": { "A": "Do nhà cung cấp cài sẵn", "B": "Từ 60°C đến 65°C", "C": "Từ 80°C đến 85°C", "D": "Trên 100°C" }, "correct": "C" }, { "id": 63, "question": "Cơ sở kinh doanh thực phẩm phải đáp ứng yêu cầu nào sau đây?", "options": { "A": "Có đủ diện tích để bố trí các khu vực bày bán thực phẩm, khu vực chứa đựng, bảo quản và thuận tiện để vận chuyển nguyên liệu, sản phẩm thực phẩm", "B": "Thiết kế các khu vực kinh doanh thực phẩm, vệ sinh, thay đồ bảo hộ và các khu vực phụ trợ phải tách biệt, phù hợp với yêu cầu thực phẩm kinh doanh", "C": "Có đủ dụng cụ thu gom chất thải, rác thải; dụng cụ làm bằng vật liệu ít bị hư hỏng, bảo đảm kín, có nắp đậy và được vệ sinh thường xuyên", "D": "Tất cả đều đúng" }, "correct": "D" }, { "id": 64, "question": "Khu vực vệ sinh của cơ sở kinh doanh thực phẩm được quy định như thế nào?", "options": { "A": "Có thể đặt chung tại khu vực kinh doanh thực phẩm", "B": "Phải ngăn cách với khu vực kinh doanh thực phẩm và có bảng chỉ dẫn \"Rửa tay sau khi đi vệ sinh\" ở nơi dễ nhìn thấy", "C": "Có thể đặt chung tại khu vực vệ sinh trang thiết bị, dụng cụ kinh doanh thực phẩm", "D": "Có thể đặt chung tại khu vực kinh doanh thực phẩm nhưng phải có nhân viên vệ sinh định kỳ" }, "correct": "B" }, { "id": 65, "question": "Tần suất vệ sinh các máng khói được quy định như thế nào?", "options": { "A": "1 lần/tuần", "B": "2 lần/tuần", "C": "Hàng ngày", "D": "Khi nào bẩn" }, "correct": "A" }, { "id": 66, "question": "Hành động nào sau đây làm mất vệ sinh dụng cụ chế biến thực phẩm?", "options": { "A": "Khử trùng dụng cụ sau khi đã rửa sạch với xà phòng và nước", "B": "Bảo quản dụng cụ tại khu vực được quy định dành cho bảo quản dụng cụ", "C": "Lau khô dụng cụ bằng khăn lau chưa được khử trùng", "D": "Rửa sạch tay trước khi cầm vào dụng cụ sạch" }, "correct": "C" }, { "id": 67, "question": "Phát biểu nào sau đây là sai?", "options": { "A": "Vi sinh vật khó phát triển trong điều kiện thực phẩm chứa hàm lượng cao của đường, muối và các chất bảo quản", "B": "Vi khuẩn chậm phát triển, thậm chí ngừng phát triển nếu trong thực phẩm không có nước", "C": "Nhiệt độ âm có thể giết chết hầu hết vi khuẩn", "D": "Hầu hết các vi khuẩn đều khó phát triển trong môi trường thực phẩm có độ acid cao" }, "correct": "C" }, { "id": 68, "question": "Việc thực hiện bảo quản thực phẩm nào sau đây là không tuân thủ quy tắc về an toàn thực phẩm?", "options": { "A": "Bảo quản thực phẩm có tính chua (acid) hộp trong hộp thiếc", "B": "Để thức ăn chưa rửa ở phía dưới những món sạch sẽ đã nấu rồi hoặc đã sẵn sàng để ăn", "C": "Đậy kín, dán nhãn hiệu, đề ngày sản xuất và hạn sử dụng", "D": "Kê cao thực phẩm lên khỏi nền tủ/kho" }, "correct": "B" }, { "id": 69, "question": "Sữa và các sản phẩm từ sữa có thế bị biến đổi chất lượng hoặc bị hỏng là do đâu?", "options": { "A": "Sự phát triển của vi sinh vật nhiễm trong quá trình chế biến. Bổ sung các chất từ bên ngoài vào sữa. Ảnh hưởng của môi trường bảo quản", "B": "Sự tác động của con người trong quá trình chế biến. Bổ sung các chất từ bên ngoài vào sữa. Ảnh hưởng của bao bì chứa", "C": "Sự phát triển của vi sinh vật nhiễm trong quá trình chế biến. Bổ sung các chất từ bên ngoài vào sữa. Ảnh hưởng của môi trường khi chế biến", "D": "Sự phát triển của vi sinh vật nhiễm trong quá trình chế biến. Bổ sung các chất từ bên ngoài vào sữa. Ảnh hưởng của bao bì chứa" }, "correct": "A" }, { "id": 70, "question": "Sữa tươi nguyên liệu cần đáp ứng các yêu cầu nào sau đây?", "options": { "A": "Màu đặc trưng của sản phẩm", "B": "Có mùi vị tự nhiên, đặc trưng của sản phẩm, không có mùi vị lạ", "C": "Dịch thể đồng nhất", "D": "Tất cả đều đúng" }, "correct": "D" }];
+
+        // ══════════════════════════════════════════
+        //  STATE
+        // ══════════════════════════════════════════
+        let qs = [], ans = {}, cur = 0, tLeft = 0, tTimer = null, done = false;
+        let resultData = []; // [{status:'c'|'w'|'s', ...}]
+
+        // ══════════════════════════════════════════
+        //  UTILS
+        // ══════════════════════════════════════════
+        function shuffle(a) { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = 0 | Math.random() * (i + 1);[b[i], b[j]] = [b[j], b[i]] } return b }
+        function show(id) { document.querySelectorAll('.page').forEach(p => p.classList.remove('on')); document.getElementById(id).classList.add('on') }
+        function toast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 2200) }
+        function closeModal() { document.getElementById('modalConfirm').classList.remove('on') }
+
+        // ══════════════════════════════════════════
+        //  STUDY MODE
+        // ══════════════════════════════════════════
+        function goStudy() {
+            buildStudy(BANK);
+            document.getElementById('studySearch').value = '';
+            show('pgStudy');
+        }
+
+        function buildStudy(data) {
+            const body = document.getElementById('studyBody');
+            body.innerHTML = '';
+            if (!data.length) { body.innerHTML = '<div style="padding:30px;text-align:center;color:var(--slate2)">Không tìm thấy câu hỏi nào.</div>'; return }
+            data.forEach(q => {
+                const card = document.createElement('div');
+                card.className = 'study-card';
+                let optsHtml = '';
+                Object.entries(q.options).forEach(([k, v]) => {
+                    const cls = k === q.correct ? 'correct' : 'normal';
+                    optsHtml += `<div class="study-opt ${cls}"><span class="study-opt-lbl">${k}.</span><span>${v.replace(/\n/g, '<br>')}</span></div>`;
+                });
+                card.innerHTML = `
+      <div class="study-card-hdr" onclick="toggleStudy(this.parentElement)">
+        <div class="study-qnum">${q.id}</div>
+        <div class="study-qtxt">${q.question}</div>
+        <span class="study-chevron">▼</span>
+      </div>
+      <div class="study-answer">
+        ${optsHtml}
+        <div class="study-hint">✅ Đáp án đúng: <strong>${q.correct}. ${q.options[q.correct]}</strong></div>
+      </div>`;
+                body.appendChild(card);
+            });
+        }
+
+        function toggleStudy(card) { card.classList.toggle('open') }
+
+        function filterStudy(val) {
+            const kw = val.trim().toLowerCase();
+            const filtered = kw ? BANK.filter(q => q.question.toLowerCase().includes(kw) || Object.values(q.options).some(o => o.toLowerCase().includes(kw))) : BANK;
+            buildStudy(filtered);
+        }
+
+        // ══════════════════════════════════════════
+        //  QUIZ
+        // ══════════════════════════════════════════
+        function startQuiz() {
+            if (tTimer) clearInterval(tTimer);
+            const picked = shuffle(BANK).slice(0, 40);
+            qs = picked.map(q => {
+                const vals = Object.values(q.options);
+                const correctVal = q.options[q.correct];
+                const sv = shuffle(vals);
+                const labels = ['A', 'B', 'C', 'D'];
+                const opts = {};
+                sv.forEach((v, i) => opts[labels[i]] = v);
+                const newCorrect = labels[sv.indexOf(correctVal)];
+                return { id: q.id, question: q.question, options: opts, correct: newCorrect };
+            });
+            ans = {}; cur = 0; done = false; tLeft = 1800;
+            show('pgQuiz');
+            renderQ();
+            updateMeta();
+            startTimer();
+            document.getElementById('quizBody').scrollTop = 0;
+        }
+
+        function startTimer() {
+            updateTimerUI();
+            tTimer = setInterval(() => {
+                tLeft--;
+                updateTimerUI();
+                if (tLeft <= 0) { clearInterval(tTimer); toast('⏰ Hết giờ! Tự động nộp bài...'); setTimeout(submitQuiz, 1300) }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            const m = 0 | tLeft / 60, s = tLeft % 60;
+            document.getElementById('timerVal').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            const pill = document.getElementById('timerPill');
+            if (tLeft <= 300) pill.classList.add('danger'); else pill.classList.remove('danger');
+        }
+
+        function renderQ() {
+            if (!qs.length) return;
+            const q = qs[cur], total = qs.length;
+            document.getElementById('qTag').textContent = `Câu ${cur + 1}`;
+            document.getElementById('qTxt').textContent = q.question;
+            document.getElementById('qcounter').textContent = `Câu ${cur + 1} / ${total}`;
+            document.getElementById('progFill').style.width = `${((cur + 1) / total) * 100}%`;
+            const sel = ans[cur];
+            const optsEl = document.getElementById('opts');
+            optsEl.innerHTML = '';
+            Object.entries(q.options).forEach(([k, v]) => {
+                const btn = document.createElement('button');
+                btn.className = 'opt';
+                if (done) {
+                    btn.disabled = true;
+                    if (k === q.correct) btn.classList.add('right');
+                    else if (k === sel) btn.classList.add('wrong');
+                } else {
+                    if (k === sel) btn.classList.add('sel');
+                }
+                btn.innerHTML = `<span class="opt-lbl">${k}</span><span class="opt-txt">${v.replace(/\n/g, '<br>')}</span>`;
+                if (!done) btn.addEventListener('click', () => pick(k));
+                optsEl.appendChild(btn);
+            });
+            document.getElementById('btnPrev').disabled = (cur === 0);
+            const isLast = (cur === total - 1);
+            document.getElementById('btnNext').style.display = isLast ? 'none' : 'block';
+            document.getElementById('btnSub').style.display = isLast ? 'block' : 'none';
+            document.getElementById('quizBody').scrollTop = 0;
+        }
+
+        function pick(k) { if (done) return; ans[cur] = k; renderQ(); updateMeta() }
+        function goQ(d) { const n = cur + d; if (n >= 0 && n < qs.length) { cur = n; renderQ() } }
+        function updateMeta() {
+            const a = Object.keys(ans).length, t = qs.length;
+            document.getElementById('metaDone').textContent = `✅ Đã làm: ${a}`;
+            document.getElementById('metaLeft').textContent = `⭕ Chưa làm: ${t - a}`;
+        }
+
+        // ══════════════════════════════════════════
+        //  GRID
+        // ══════════════════════════════════════════
+        function openGrid() {
+            const cells = document.getElementById('gcells'); cells.innerHTML = '';
+            qs.forEach((_, i) => {
+                const d = document.createElement('div');
+                d.className = 'gcell ' + (i === cur ? 'gc-cur' : ans[i] !== undefined ? 'gc-done' : 'gc-empty');
+                d.textContent = i + 1;
+                d.addEventListener('click', () => { cur = i; renderQ(); closeGrid() });
+                cells.appendChild(d);
+            });
+            document.getElementById('drGrid').classList.add('on');
+        }
+        function closeGrid() { document.getElementById('drGrid').classList.remove('on') }
+        function closeGridBg(e) { if (e.target === document.getElementById('drGrid')) closeGrid() }
+
+        // ══════════════════════════════════════════
+        //  SUBMIT
+        // ══════════════════════════════════════════
+        function askSubmit() {
+            const skip = qs.length - Object.keys(ans).length;
+            document.getElementById('modalTxt').innerHTML = skip > 0
+                ? `Bạn còn <strong>${skip} câu chưa làm</strong>.<br>Bạn có chắc muốn nộp bài không?`
+                : `Bạn đã làm xong <strong>tất cả ${qs.length} câu</strong>.<br>Xác nhận nộp bài?`;
+            document.getElementById('modalConfirm').classList.add('on');
+        }
+
+        function submitQuiz() {
+            closeModal();
+            if (tTimer) clearInterval(tTimer);
+            done = true;
+            buildResult();
+            show('pgResult');
+            document.getElementById('pgResult').scrollTop = 0;
+        }
+
+        // ══════════════════════════════════════════
+        //  RESULT
+        // ══════════════════════════════════════════
+        function buildResult() {
+            let c = 0, w = 0, s = 0;
+            resultData = qs.map((q, i) => {
+                const a = ans[i];
+                let st;
+                if (a === undefined) { st = 's'; s++ }
+                else if (a === q.correct) { st = 'c'; c++ }
+                else { st = 'w'; w++ }
+                return { ...q, st, userAns: a, idx: i };
+            });
+            const score = Math.round((c / qs.length) * 100);
+            document.getElementById('scoreBig').textContent = score;
+            document.getElementById('stC').textContent = c;
+            document.getElementById('stW').textContent = w;
+            document.getElementById('stS').textContent = s;
+            let title, sub;
+            if (score >= 80) { title = '🎉 Xuất Sắc!'; sub = `Đạt ${score}/100 — Kết quả rất tốt!` }
+            else if (score >= 60) { title = '✅ Đạt Yêu Cầu'; sub = `Đạt ${score}/100 — Tiếp tục cố gắng!` }
+            else { title = '❌ Chưa Đạt'; sub = `Đạt ${score}/100 — Cần ôn tập thêm` }
+            document.getElementById('resTitle').textContent = title;
+            document.getElementById('resSub').textContent = sub;
+            renderReview('all');
+        }
+
+        function filterResult(type, btn) {
+            document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            renderReview(type);
+        }
+
+        function renderReview(type) {
+            const list = document.getElementById('reviewList'); list.innerHTML = '';
+            const filtered = type === 'all' ? resultData : resultData.filter(q => q.st === type);
+            if (!filtered.length) {
+                list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--slate2);font-weight:600">Không có câu nào.</div>';
+                return;
+            }
+            filtered.forEach(q => {
+                const card = document.createElement('div');
+                const badgeLabel = q.st === 'c' ? '✅ Đúng' : q.st === 'w' ? '❌ Sai' : '⚠️ Bỏ qua';
+                card.className = `rcard ${q.st}-card`;
+                let optsHtml = '';
+                Object.entries(q.options).forEach(([k, v]) => {
+                    let cls = 'no';
+                    if (k === q.correct) cls = 'co';
+                    else if (k === q.userAns && q.userAns !== q.correct) cls = 'wo';
+                    optsHtml += `<div class="ropt ${cls}"><span class="ropt-lbl">${k}.</span><span>${v.replace(/\n/g, '<br>')}</span></div>`;
+                });
+                card.innerHTML = `
+      <div class="rcard-hdr">
+        <span class="rcard-qn">Câu ${q.idx + 1} (Đề số ${q.id})</span>
+        <span class="rbadge ${q.st}">${badgeLabel}</span>
+      </div>
+      <div class="rcard-q">${q.question}</div>
+      <div class="rcard-opts">${optsHtml}</div>`;
+                list.appendChild(card);
+            });
+        }
+
+        // ══════════════════════════════════════════
+        //  iOS FIXES
+        // ══════════════════════════════════════════
+        let lastTouch = 0;
+        document.addEventListener('touchend', e => {
+            const now = Date.now();
+            if (now - lastTouch <= 300) e.preventDefault();
+            lastTouch = now;
+        }, { passive: false });
+
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('pgQuiz').classList.contains('on') || done) return;
+            if (e.key === 'ArrowRight') goQ(1);
+            if (e.key === 'ArrowLeft') goQ(-1);
+            const k = e.key.toUpperCase();
+            if ('ABCD'.includes(k) && k.length === 1 && qs[cur]?.options[k]) pick(k);
+        });
+    </script>
+</body>
+
+</html>
